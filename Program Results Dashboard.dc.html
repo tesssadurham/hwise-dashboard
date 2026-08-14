@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@font-face { font-family:"KazimirText"; src:url("./fonts/KazimirText-Regular.woff2") format("woff2"); font-weight:400; font-display:swap; }
+@font-face { font-family:"Proxima Nova"; src:url("./fonts/ProximaNova-Regular.otf") format("opentype"); font-weight:400; font-display:swap; }
+@font-face { font-family:"Proxima Nova"; src:url("./fonts/ProximaNova-Semibold.otf") format("opentype"); font-weight:600; font-display:swap; }
+html, body { margin:0; padding:0; background:#FAF7F0; color:#222520; font-family:"Proxima Nova", -apple-system, sans-serif; }
+a { color:#222520; text-underline-offset:3px; }
+a:hover { color:#C82027; }
+select { font-family:"Proxima Nova", sans-serif; }
+</style>
+</helmet>
+<div style="min-height:100vh; background:#FAF7F0; padding:0 0 96px 0">
+
+  <div style="display:flex; align-items:center; justify-content:space-between; gap:24px; padding:20px 40px; border-bottom:1px solid #DFDFD7; background:#FAF7F0; position:sticky; top:0; z-index:20">
+    <div style="display:flex; align-items:center; gap:14px">
+      <svg aria-label="charity: water" style="height:26px; width:auto; display:block; color:#222520" xmlns="http://www.w3.org/2000/svg" width="35" height="48" viewBox="0 0 35 48" fill="none"> <path d="M 21.728 23.54 L 13.945 23.54 C 13.615 23.54 13.298 23.67 13.064 23.901 C 12.831 24.133 12.7 24.446 12.7 24.774 L 12.7 28.116 C 12.7 28.443 12.831 28.757 13.064 28.988 C 13.298 29.22 13.615 29.35 13.945 29.35 L 21.728 29.35 C 22.059 29.35 22.375 29.22 22.609 28.988 C 22.842 28.757 22.974 28.443 22.974 28.116 L 22.974 24.774 C 22.974 24.446 22.842 24.133 22.609 23.901 C 22.375 23.67 22.059 23.54 21.728 23.54 L 21.728 23.54 Z M 34.428 6.277 L 32.69 2.865 C 32.69 2.865 33.267 2.531 33.526 2.402 C 33.786 2.274 33.98 2.113 33.624 1.451 C 33.267 0.789 32.878 0.943 32.878 0.943 C 32.878 0.943 32.372 1.22 31.814 1.502 C 31.532 1.061 31.145 0.694 30.687 0.435 C 30.229 0.175 29.714 0.029 29.187 0.011 L 27.241 0.011 C 27.08 -0.011 26.916 0 26.76 0.044 C 26.603 0.089 26.458 0.165 26.333 0.268 C 26.211 0.398 26.062 0.499 25.896 0.566 C 25.73 0.633 25.552 0.663 25.373 0.654 L 12.265 0.654 C 12.135 0.654 12.109 0.577 12.032 0.525 C 11.704 0.358 11.334 0.29 10.967 0.329 C 10.601 0.368 10.254 0.512 9.969 0.744 C 9.761 0.975 8.931 1.978 8.438 2.531 C 8.114 2.91 7.675 3.176 7.187 3.289 C 7.244 3.215 7.279 3.126 7.287 3.032 C 7.296 2.939 7.276 2.845 7.232 2.762 L 7.037 2.376 L 7.31 1.644 L 7.556 1.515 L 7.414 1.181 C 7.414 1.181 7.258 1.245 6.972 1.387 C 6.687 1.528 6.687 1.657 6.687 1.657 C 6.564 2.119 6.22 2.145 6.22 2.145 C 6.22 2.145 5.468 0.731 5.364 0.551 C 5.26 0.371 5.059 -0.194 2.543 1.142 C 0.026 2.479 0.649 2.993 0.649 2.993 L 1.479 4.632 L 1.219 4.838 L 1.868 6.072 C 1.868 6.072 1.712 6.149 1.167 6.509 C 0.829 6.65 0.538 6.885 0.331 7.186 C 0.124 7.487 0.009 7.841 0 8.205 L 0 44.067 C 0 46.766 0.778 48 3.814 48 L 31.503 48 C 33.286 48 34.999 47.075 34.999 43.99 L 34.999 8.54 C 35.025 6.766 34.661 6.74 34.428 6.277 Z M 14.548 3.302 L 23.771 3.302 C 23.966 3.289 24.162 3.316 24.346 3.381 C 24.53 3.446 24.699 3.547 24.842 3.68 C 24.985 3.812 25.099 3.972 25.176 4.15 C 25.254 4.327 25.294 4.519 25.294 4.713 C 25.294 4.906 25.254 5.098 25.176 5.276 C 25.099 5.453 24.985 5.613 24.842 5.745 C 24.699 5.878 24.53 5.979 24.346 6.044 C 24.162 6.109 23.966 6.136 23.771 6.123 L 14.548 6.123 C 14.353 6.136 14.157 6.109 13.973 6.044 C 13.789 5.979 13.62 5.878 13.478 5.745 C 13.335 5.613 13.221 5.453 13.143 5.276 C 13.065 5.098 13.025 4.906 13.025 4.713 C 13.025 4.519 13.065 4.327 13.143 4.15 C 13.221 3.972 13.335 3.812 13.478 3.68 C 13.62 3.547 13.789 3.446 13.973 3.381 C 14.157 3.316 14.353 3.289 14.548 3.302 L 14.548 3.302 Z M 26.236 31.502 C 26.236 31.502 29.323 36.843 29.972 38.064 C 30.828 39.69 29.661 40.384 29.661 40.384 C 29.661 40.384 28.104 41.155 27.326 39.742 C 26.677 38.559 24.511 34.799 23.745 33.636 C 22.766 32.145 22.351 31.631 21.028 31.631 L 14.542 31.631 C 13.206 31.631 12.79 32.145 11.792 33.636 C 11.026 34.799 8.853 38.559 8.192 39.742 C 7.407 41.13 5.837 40.384 5.837 40.384 C 5.837 40.384 4.657 39.69 5.526 38.064 C 6.175 36.843 9.288 31.502 9.288 31.502 C 9.718 30.852 9.987 30.11 10.073 29.337 L 10.073 23.392 C 9.985 22.614 9.709 21.869 9.269 21.22 C 9.269 21.22 6.155 15.885 5.507 14.664 C 4.638 13.064 5.837 12.37 5.837 12.37 C 5.837 12.37 7.407 11.599 8.192 13.013 C 8.84 14.189 11.026 17.942 11.792 19.099 C 12.79 20.59 13.206 21.098 14.542 21.098 L 21.028 21.098 C 22.325 21.098 22.766 20.59 23.745 19.099 C 24.511 17.942 26.664 14.189 27.326 13.013 C 28.104 11.625 29.661 12.37 29.661 12.37 C 29.661 12.37 30.828 13.064 29.972 14.677 C 29.323 15.898 26.236 21.233 26.236 21.233 C 25.807 21.881 25.541 22.621 25.458 23.392 L 25.458 29.356 C 25.546 30.122 25.812 30.856 26.236 31.502 Z" fill="currentColor" fill-rule="nonzero"/> </svg>
+      <div style="width:1px; height:24px; background:#DFDFD7"></div>
+      <div style="font-family:'KazimirText', Georgia, serif; font-size:22px; line-height:26px">Monitoring &amp; evaluation results</div>
+    </div>
+    <div style="display:flex; align-items:center; gap:20px">
+      <div style="font-size:12px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#71716C">{{ grantCount }} grants · {{ countryCount }} countries · 2020–2025</div>
+    </div>
+  </div>
+
+  <div style="max-width:1560px; margin:0 auto; padding:0 40px">
+
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:32px; flex-wrap:wrap; padding:32px 0 24px 0">
+      <div style="display:flex; align-items:flex-end; gap:20px; flex-wrap:wrap">
+        <div style="display:flex; flex-direction:column; gap:7px">
+          <label for="partnerSel" style="font-size:11px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#71716C">Partner</label>
+          <select id="partnerSel" value="{{ partner }}" onChange="{{ onPartner }}" style="appearance:none; background:#FFFFFF; border:1px solid #C1C1BA; border-radius:4px; padding:10px 34px 10px 12px; font-size:15px; color:#222520; min-width:230px; cursor:pointer">
+            <sc-for list="{{ partnerOptions }}" as="p" hint-placeholder-count="4">
+              <option value="{{ p }}">{{ p }}</option>
+            </sc-for>
+          </select>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:7px">
+          <label for="countrySel" style="font-size:11px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#71716C">Country</label>
+          <select id="countrySel" value="{{ countryFilter }}" onChange="{{ onCountry }}" style="appearance:none; background:#FFFFFF; border:1px solid #C1C1BA; border-radius:4px; padding:10px 34px 10px 12px; font-size:15px; color:#222520; min-width:200px; cursor:pointer">
+            <sc-for list="{{ countryOptions }}" as="c" hint-placeholder-count="4">
+              <option value="{{ c }}">{{ c }}</option>
+            </sc-for>
+          </select>
+        </div>
+        <sc-if value="{{ hwiseOnly }}" hint-placeholder-val="{{ false }}">
+          <button type="button" onClick="{{ toggleHwise }}" style="background:#222520; color:#FAF7F0; border:1px solid #222520; border-radius:9999px; padding:11px 18px; font-size:12px; font-weight:600; letter-spacing:1px; text-transform:uppercase; cursor:pointer">HWISE grants only</button>
+        </sc-if>
+        <sc-if value="{{ notHwiseOnly }}" hint-placeholder-val="{{ true }}">
+          <button type="button" onClick="{{ toggleHwise }}" style="background:transparent; color:#383B36; border:1px solid #C1C1BA; border-radius:9999px; padding:11px 18px; font-size:12px; font-weight:600; letter-spacing:1px; text-transform:uppercase; cursor:pointer" style-hover="border-color:#222520">HWISE grants only</button>
+        </sc-if>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:10px">
+        <div style="display:flex; align-items:center; gap:18px; flex-wrap:wrap">
+          <span style="font-size:11px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#71716C">Access</span>
+          <sc-for list="{{ legendAccess }}" as="l" hint-placeholder-count="3">
+            <span style="display:flex; align-items:center; gap:7px; font-size:13px; color:#383B36"><span style="{{ l.swatch }}"></span>{{ l.label }}</span>
+          </sc-for>
+        </div>
+        <div style="display:flex; align-items:center; gap:18px; flex-wrap:wrap">
+          <span style="font-size:11px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#71716C">HWISE</span>
+          <sc-for list="{{ legendHwise }}" as="l" hint-placeholder-count="2">
+            <span style="display:flex; align-items:center; gap:7px; font-size:13px; color:#383B36"><span style="{{ l.swatch }}"></span>{{ l.label }}</span>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <sc-if value="{{ partnerHeader }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#FFFFFF; border:1px solid #DFDFD7; border-radius:16px; padding:28px 32px; margin-bottom:24px; display:flex; align-items:center; gap:48px; flex-wrap:wrap; box-shadow:0 1px 2px rgba(0,0,0,.05)">
+        <div style="min-width:220px">
+          <div style="font-size:11px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#71716C; margin-bottom:6px">Partner</div>
+          <div style="font-family:'KazimirText', Georgia, serif; font-size:32px; line-height:36px">{{ partnerHeader.name }}</div>
+          <div style="font-size:14px; color:#71716C; margin-top:6px">{{ partnerHeader.sub }}</div>
+        </div>
+        <div style="display:flex; gap:44px; flex-wrap:wrap">
+          <sc-for list="{{ partnerHeader.stats }}" as="s" hint-placeholder-count="4">
+            <div>
+              <div style="font-size:11px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#71716C; margin-bottom:8px">{{ s.label }}</div>
+              <div style="display:flex; align-items:baseline; gap:8px">
+                <span style="font-size:26px; font-weight:600; color:#9B9B94">{{ s.from }}</span>
+                <span style="font-size:15px; color:#C1C1BA">→</span>
+                <span style="font-size:30px; font-weight:600">{{ s.to }}</span>
+                <span style="font-size:13px; font-weight:600; letter-spacing:.5px; {{ s.deltaStyle }}">{{ s.delta }}</span>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+
+    <div style="background:#FFFFFF; border:1px solid #DFDFD7; border-radius:16px; padding:32px 32px 24px 32px; box-shadow:0 1px 2px rgba(0,0,0,.05)">
+      <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap; margin-bottom:28px">
+        <div>
+          <div style="font-family:'KazimirText', Georgia, serif; font-size:26px; line-height:32px">Water access service level vs HWISE water insecurity</div>
+          <div style="font-size:15px; color:#71716C; margin-top:6px">{{ summarySub }}</div>
+        </div>
+        <div style="font-size:12px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#9B9B94">Click a country to open its grants</div>
+      </div>
+
+      <sc-if value="{{ benchmark }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex; align-items:center; gap:9px; margin-bottom:22px; font-size:14px; color:#383B36">
+          <span style="width:22px; height:0; border-top:1px dashed #14A88C; display:inline-block; flex:none"></span>{{ benchmark.note }}
+        </div>
+      </sc-if>
+      <sc-if value="{{ noBenchmark }}" hint-placeholder-val="{{ false }}">
+        <div style="margin-bottom:22px; font-size:14px; color:#71716C">{{ noBenchmarkNote }}</div>
+      </sc-if>
+
+      <sc-if value="{{ hasGroups }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex; align-items:stretch; gap:10px">
+          <div style="{{ axisStyle }}">
+            <sc-for list="{{ axisTicks }}" as="t" hint-placeholder-count="5">
+              <span style="{{ t.style }}">{{ t.label }}</span>
+            </sc-for>
+          </div>
+          <div style="flex:1; min-width:0; overflow-x:auto; padding-bottom:4px">
+            <div style="display:flex; align-items:flex-start; gap:6px; justify-content:flex-start; position:relative">
+              <sc-if value="{{ benchmark }}" hint-placeholder-val="{{ false }}">
+                <span title="{{ benchmark.title }}" style="{{ benchmark.lineStyle }}"></span>
+              </sc-if>
+              <sc-for list="{{ groups }}" as="g" hint-placeholder-count="10">
+                <div onClick="{{ g.onClick }}" title="{{ g.tooltip }}" style="{{ g.style }}">
+                  <div style="{{ plotStyle }}">
+                    <sc-for list="{{ gridLines }}" as="gl" hint-placeholder-count="5">
+                      <span style="{{ gl.style }}"></span>
+                    </sc-for>
+                    <sc-for list="{{ g.clusters }}" as="cl" hint-placeholder-count="2">
+                      <div style="{{ cl.wrapStyle }}">
+                        <sc-if value="{{ cl.access }}" hint-placeholder-val="{{ true }}">
+                          <div title="{{ cl.access.title }}" style="{{ cl.access.barStyle }}">
+                            <sc-for list="{{ cl.access.segs }}" as="s" hint-placeholder-count="3">
+                              <span title="{{ s.title }}" style="{{ s.labelledStyle }}">{{ s.label }}</span>
+                            </sc-for>
+                          </div>
+                        </sc-if>
+                        <sc-if value="{{ cl.hwise }}" hint-placeholder-val="{{ true }}">
+                          <div title="{{ cl.hwise.title }}" style="{{ cl.hwise.barStyle }}">
+                            <sc-for list="{{ cl.hwise.segs }}" as="s" hint-placeholder-count="2">
+                              <span title="{{ s.title }}" style="{{ s.style }}"></span>
+                            </sc-for>
+                          </div>
+                        </sc-if>
+                      </div>
+                    </sc-for>
+                  </div>
+                  <div style="{{ tickRowStyle }}">
+                    <sc-for list="{{ g.clusters }}" as="cl" hint-placeholder-count="2">
+                      <span style="{{ cl.tickStyle }}">{{ cl.tick }}</span>
+                    </sc-for>
+                  </div>
+                  <div style="{{ labelTrackStyle }}">
+                    <span style="{{ g.labelStyle }}">{{ g.name }}</span>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ noGroups }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:64px 0; text-align:center; color:#71716C; font-size:17px">{{ emptyMessage }}</div>
+      </sc-if>
+    </div>
+
+    <sc-if value="{{ countryPanel }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#F8EED3; border:1px solid #DFDFD7; border-radius:16px; padding:32px; margin-top:24px">
+        <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap; margin-bottom:26px">
+          <div>
+            <div style="font-size:11px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#71716C; margin-bottom:6px">Grant-level results</div>
+            <div style="font-family:'KazimirText', Georgia, serif; font-size:30px; line-height:34px">{{ countryPanel.name }}</div>
+            <div style="font-size:15px; color:#383B36; margin-top:6px">{{ countryPanel.sub }}</div>
+          </div>
+          <button type="button" onClick="{{ closeCountry }}" style="background:transparent; border:1px solid #C1C1BA; border-radius:9999px; padding:10px 18px; font-size:12px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#383B36; cursor:pointer" style-hover="border-color:#222520">Close</button>
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(232px, 1fr)); gap:16px">
+          <sc-for list="{{ countryPanel.grants }}" as="gr" hint-placeholder-count="4">
+            <div onClick="{{ gr.onClick }}" style="{{ gr.cardStyle }}">
+              <div style="font-size:14px; font-weight:600; letter-spacing:.3px">{{ gr.id }}</div>
+              <div style="font-size:12px; color:#71716C; margin-top:3px; margin-bottom:16px">{{ gr.meta }}</div>
+              <div style="display:flex; align-items:flex-end; justify-content:center; gap:16px; height:150px; position:relative">
+                <sc-for list="{{ gridLinesMini }}" as="gl" hint-placeholder-count="5">
+                  <span style="{{ gl.style }}"></span>
+                </sc-for>
+                <sc-for list="{{ gr.clusters }}" as="cl" hint-placeholder-count="2">
+                  <div style="{{ cl.wrapStyle }}">
+                    <sc-if value="{{ cl.access }}" hint-placeholder-val="{{ true }}">
+                      <div title="{{ cl.access.title }}" style="{{ cl.access.barStyle }}">
+                        <sc-for list="{{ cl.access.segs }}" as="s" hint-placeholder-count="3">
+                          <span title="{{ s.title }}" style="{{ s.style }}"></span>
+                        </sc-for>
+                      </div>
+                    </sc-if>
+                    <sc-if value="{{ cl.hwise }}" hint-placeholder-val="{{ true }}">
+                      <div title="{{ cl.hwise.title }}" style="{{ cl.hwise.barStyle }}">
+                        <sc-for list="{{ cl.hwise.segs }}" as="s" hint-placeholder-count="2">
+                          <span title="{{ s.title }}" style="{{ s.style }}"></span>
+                        </sc-for>
+                      </div>
+                    </sc-if>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="display:flex; justify-content:center; gap:16px; margin-top:8px">
+                <sc-for list="{{ gr.clusters }}" as="cl" hint-placeholder-count="2">
+                  <span style="font-size:10px; font-weight:600; letter-spacing:1px; color:#71716C; width:41px; text-align:center">{{ cl.tick }}</span>
+                </sc-for>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ detail }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#FFFFFF; border:1px solid #DFDFD7; border-radius:16px; padding:36px 40px; margin-top:24px; box-shadow:0 1px 2px rgba(0,0,0,.06)">
+        <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:24px; flex-wrap:wrap; margin-bottom:32px">
+          <div>
+            <div style="font-size:11px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#71716C; margin-bottom:8px">Grant detail</div>
+            <div style="font-family:'KazimirText', Georgia, serif; font-size:36px; line-height:40px">{{ detail.id }}</div>
+            <div style="font-size:16px; color:#383B36; margin-top:8px">{{ detail.meta }}</div>
+          </div>
+          <button type="button" onClick="{{ closeDetail }}" style="background:transparent; border:1px solid #C1C1BA; border-radius:9999px; padding:10px 18px; font-size:12px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#383B36; cursor:pointer" style-hover="border-color:#222520">Close</button>
+        </div>
+
+        <div style="display:flex; align-items:stretch; gap:12px; max-width:580px">
+          <div style="width:46px; position:relative; height:300px; flex:none">
+            <sc-for list="{{ axisTicksDetail }}" as="t" hint-placeholder-count="5">
+              <span style="{{ t.style }}">{{ t.label }}</span>
+            </sc-for>
+          </div>
+          <div style="flex:1; min-width:0">
+            <div style="position:relative; height:300px; display:flex; align-items:flex-end; gap:28px">
+              <sc-for list="{{ gridLinesDetail }}" as="gl" hint-placeholder-count="5">
+                <span style="{{ gl.style }}"></span>
+              </sc-for>
+              <sc-for list="{{ detail.bars }}" as="b" hint-placeholder-count="4">
+                <div style="flex:1; height:300px; display:flex; flex-direction:column; position:relative; z-index:2">
+                  <sc-for list="{{ b.segs }}" as="s" hint-placeholder-count="3">
+                    <span title="{{ s.title }}" style="{{ s.labelledStyle }}">{{ s.label }}</span>
+                  </sc-for>
+                </div>
+              </sc-for>
+            </div>
+            <div style="display:flex; gap:28px; margin-top:10px">
+              <sc-for list="{{ detail.bars }}" as="b" hint-placeholder-count="4">
+                <div style="flex:1; text-align:center">
+                  <div style="font-size:13px; font-weight:600; letter-spacing:.5px">{{ b.tick }}</div>
+                  <div style="font-size:12px; color:#71716C; margin-top:2px">{{ b.sub }}</div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+
+        <sc-if value="{{ detail.hasFlags }}" hint-placeholder-val="{{ false }}">
+          <div style="margin-top:28px; border-left:2px solid #E2343A; padding:2px 0 2px 14px; max-width:760px">
+            <div style="font-size:11px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#C82027; margin-bottom:6px">Data check</div>
+            <sc-for list="{{ detail.flags }}" as="f" hint-placeholder-count="1">
+              <div style="font-size:14px; color:#383B36; line-height:20px">{{ f }}</div>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ detail.hasItems }}" hint-placeholder-val="{{ true }}">
+          <div style="margin-top:44px; padding-top:36px; border-top:1px solid #DFDFD7">
+            <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap; margin-bottom:30px">
+              <div>
+                <div style="font-family:'KazimirText', Georgia, serif; font-size:24px; line-height:30px">HWISE items — households reporting each experience</div>
+                <div style="font-size:15px; color:#71716C; margin-top:5px; max-width:640px; text-wrap:pretty">The share of households that reported experiencing the event at least rarely in the past four weeks.</div>
+              </div>
+              <div style="display:flex; align-items:center; gap:18px">
+                <span style="display:flex; align-items:center; gap:7px; font-size:13px; color:#383B36"><span style="width:13px; height:13px; border-radius:2px; background:#19DBB4; display:inline-block"></span>Baseline</span>
+                <span style="display:flex; align-items:center; gap:7px; font-size:13px; color:#383B36"><span style="width:13px; height:13px; border-radius:2px; background:#29B0E4; display:inline-block"></span>Endline</span>
+              </div>
+            </div>
+            <div style="display:flex; align-items:stretch; gap:12px">
+              <div style="width:46px; position:relative; height:210px; flex:none">
+                <sc-for list="{{ axisTicksItems }}" as="t" hint-placeholder-count="5">
+                  <span style="{{ t.style }}">{{ t.label }}</span>
+                </sc-for>
+              </div>
+              <div style="flex:1; min-width:0">
+                <div style="position:relative; height:210px; display:flex; align-items:flex-end; gap:10px">
+                  <sc-for list="{{ gridLinesItems }}" as="gl" hint-placeholder-count="5">
+                    <span style="{{ gl.style }}"></span>
+                  </sc-for>
+                  <sc-for list="{{ detail.items }}" as="it" hint-placeholder-count="12">
+                    <div style="flex:1; height:210px; display:flex; align-items:flex-end; justify-content:center; gap:3px; position:relative; z-index:2">
+                      <sc-if value="{{ it.blBar }}" hint-placeholder-val="{{ true }}">
+                        <div style="flex:1; max-width:20px; display:flex; flex-direction:column; justify-content:flex-end; align-items:center; height:100%">
+                          <span style="font-size:10px; font-weight:600; color:#383B36; margin-bottom:3px">{{ it.blLabel }}</span>
+                          <span title="{{ it.blTitle }}" style="{{ it.blStyle }}"></span>
+                        </div>
+                      </sc-if>
+                      <sc-if value="{{ it.elBar }}" hint-placeholder-val="{{ true }}">
+                        <div style="flex:1; max-width:20px; display:flex; flex-direction:column; justify-content:flex-end; align-items:center; height:100%">
+                          <span style="font-size:10px; font-weight:600; color:#383B36; margin-bottom:3px">{{ it.elLabel }}</span>
+                          <span title="{{ it.elTitle }}" style="{{ it.elStyle }}"></span>
+                        </div>
+                      </sc-if>
+                    </div>
+                  </sc-for>
+                </div>
+                <div style="display:flex; gap:10px; margin-top:9px">
+                  <sc-for list="{{ detail.items }}" as="it" hint-placeholder-count="12">
+                    <div style="flex:1; text-align:center; font-size:12px; color:#383B36">{{ it.label }}</div>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ detail.noItems }}" hint-placeholder-val="{{ false }}">
+          <div style="margin-top:36px; padding-top:28px; border-top:1px solid #DFDFD7; font-size:15px; color:#71716C">No HWISE item data collected for this grant.</div>
+        </sc-if>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ loading }}" hint-placeholder-val="{{ true }}">
+      <div style="padding:80px 0; text-align:center; color:#9B9B94; font-size:16px">Loading results…</div>
+    </sc-if>
+
+    <div style="margin-top:40px; font-size:13px; color:#9B9B94; line-height:20px; max-width:820px">Improved contains basic: basic is an improved source within a 30-minute round trip; limited is an improved source further away; the remainder is unimproved. HWISE bars show the percent of households classified as water insecurity (HWISE). Country figures are unweighted averages of grant results. Grants before 2020 are excluded. The national water insecurity rate is the IWISE-12 country estimate for the wave shown and is not directly comparable to the grant bars, which use the HWISE-12 scale in programme areas and different survey years.</div>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showValueLabels&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Chart&quot;},&quot;accessPalette&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Navy &amp; yellow&quot;,&quot;Deep slate &amp; yellow&quot;,&quot;Blue &amp; yellow&quot;],&quot;default&quot;:&quot;Navy &amp; yellow&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Chart&quot;},&quot;sortMode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Country A–Z&quot;,&quot;Largest basic-access gain&quot;,&quot;Largest HWISE reduction&quot;],&quot;default&quot;:&quot;Country A–Z&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Chart&quot;}}">
+class Component extends DCLogic {
+  state = { grants: null, items: null, partner: 'All partners', countryFilter: 'All countries', hwiseOnly: false, openCountry: null, openGrant: null };
+
+  componentDidMount() {
+    import('./mne-data.js').then(m => this.setState({ grants: m.GRANTS, items: m.ITEM_LABELS, national: m.IWISE_NATIONAL }));
+  }
+
+  renderVals() {
+    const S = this.state;
+    const showLabels = this.props.showValueLabels ?? true;
+    const ramp = this.props.accessPalette ?? 'Navy & yellow';
+    const sortMode = this.props.sortMode ?? 'Country A–Z';
+    const C = {
+      unimproved: '#C1C1BA',
+      limited: '#FFCA0A',
+      basic: ramp === 'Blue & yellow' ? '#5493D3' : ramp === 'Deep slate & yellow' ? '#203236' : 'oklch(0.34 0.072 250)',
+      insecure: '#19DBB4',
+      secure: '#DCF7F1'
+    };
+    const SHORT = { 'Central African Republic': 'Central African Rep.' };
+    const NAMES = { basic: 'Basic (improved source ≤30 min round trip)', limited: 'Limited (improved source >30 min round trip)', unimproved: 'Unimproved', insecure: 'Water insecure', secure: 'Water secure' };
+    const pct = v => Math.round(v * 100) + '%';
+    const sw = c => 'width:13px; height:13px; border-radius:2px; display:inline-block; background:' + c + (c === '#DCF7F1' ? '; border:1px solid #C1C1BA' : '');
+
+    const base = {
+      loading: !S.grants,
+      legendAccess: [
+        { label: 'Basic (≤30 min)', swatch: sw(C.basic) },
+        { label: 'Limited (>30 min)', swatch: sw(C.limited) },
+        { label: 'Unimproved', swatch: sw(C.unimproved) }
+      ],
+      legendHwise: [
+        { label: 'Water insecure', swatch: sw(C.insecure) },
+        { label: 'Water secure', swatch: sw(C.secure) }
+      ],
+      axisTicks: this.ticks(230),
+      axisTicksDetail: this.ticks(300),
+      axisTicksItems: this.ticks(210),
+      gridLines: this.grid(),
+      gridLinesMini: this.grid(),
+      gridLinesDetail: this.grid(),
+      gridLinesItems: this.grid(),
+      closeCountry: () => this.setState({ openCountry: null, openGrant: null }),
+      closeDetail: () => this.setState({ openGrant: null }),
+      toggleHwise: () => this.setState({ hwiseOnly: !S.hwiseOnly, openCountry: null, openGrant: null }),
+      onPartner: e => this.setState({ partner: e.target.value, openCountry: null, openGrant: null }),
+      onCountry: e => this.setState({ countryFilter: e.target.value, openCountry: null, openGrant: null }),
+      hwiseOnly: S.hwiseOnly,
+      notHwiseOnly: !S.hwiseOnly,
+      partner: S.partner,
+      countryFilter: S.countryFilter,
+      partnerOptions: ['All partners'],
+      countryOptions: ['All countries'],
+      groups: [],
+      hasGroups: false,
+      noGroups: false,
+      grantCount: 0,
+      countryCount: 0,
+      summarySub: '',
+      emptyMessage: '',
+      partnerHeader: null,
+      countryPanel: null,
+      detail: null,
+      benchmark: null,
+      labelTrackStyle: 'position:relative; width:100%; height:126px',
+      plotStyle: 'position:relative; height:230px; width:100%; display:flex; align-items:flex-end; justify-content:center; gap:9px',
+      axisStyle: 'width:42px; position:relative; height:230px; flex:none',
+      tickRowStyle: 'display:flex; justify-content:center; gap:9px; margin-top:7px; width:100%',
+      noBenchmark: false,
+      noBenchmarkNote: ''
+    };
+    if (!S.grants) return base;
+
+    const all = S.grants;
+    base.partnerOptions = ['All partners'].concat([...new Set(all.map(g => g.org))].sort((a, b) => a.localeCompare(b)));
+    base.countryOptions = ['All countries'].concat([...new Set(all.map(g => g.country))].sort((a, b) => a.localeCompare(b)));
+
+    let rows = all;
+    if (S.partner !== 'All partners') rows = rows.filter(g => g.org === S.partner);
+    if (S.countryFilter !== 'All countries') rows = rows.filter(g => g.country === S.countryFilter);
+    if (S.hwiseOnly) rows = rows.filter(g => g.hwise_bl != null || g.hwise_el != null);
+
+    base.grantCount = rows.length;
+    base.countryCount = new Set(rows.map(g => g.country)).size;
+    base.summarySub = rows.length + (rows.length === 1 ? ' grant' : ' grants') + ' across ' + base.countryCount + (base.countryCount === 1 ? ' country' : ' countries') + (S.hwiseOnly ? ' · HWISE grants only' : '');
+    base.emptyMessage = 'No grants match this combination of filters.';
+
+    const avg = (arr, k) => { const v = arr.map(r => r[k]).filter(x => x != null); return v.length ? v.reduce((a, b) => a + b, 0) / v.length : null; };
+
+    const byCountry = {};
+    for (const g of rows) (byCountry[g.country] = byCountry[g.country] || []).push(g);
+    let list = Object.entries(byCountry).map(([name, gs]) => ({
+      name, gs,
+      improved_bl: avg(gs, 'improved_bl'), improved_el: avg(gs, 'improved_el'),
+      basic_bl: avg(gs, 'basic_bl'), basic_el: avg(gs, 'basic_el'),
+      hwise_bl: avg(gs, 'hwise_bl'), hwise_el: avg(gs, 'hwise_el')
+    }));
+    if (sortMode === 'Largest basic-access gain') list.sort((a, b) => this.gain(b, 'basic') - this.gain(a, 'basic'));
+    else if (sortMode === 'Largest HWISE reduction') list.sort((a, b) => this.gain(a, 'hwise') - this.gain(b, 'hwise'));
+    else list.sort((a, b) => a.name.localeCompare(b.name));
+
+    const n = list.length;
+    const plotH = n <= 4 ? 340 : n <= 8 ? 300 : 230;
+    const aW = n <= 2 ? 76 : n <= 4 ? 58 : n <= 6 ? 42 : n <= 8 ? 32 : n <= 12 ? 22 : 16;
+    const geo = { plotH, aW, hW: Math.max(7, Math.round(aW * 0.42)) };
+    const clusterGap = aW >= 40 ? 20 : aW >= 22 ? 12 : 9;
+    const maxW = n <= 2 ? 'none' : (n <= 4 ? 300 : n <= 6 ? 220 : n <= 8 ? 170 : 118) + 'px';
+    const bigLabels = aW >= 40 && showLabels;
+    const horizontalLabels = n <= 6;
+    base.plotStyle = 'position:relative; height:' + plotH + 'px; width:100%; display:flex; align-items:flex-end; justify-content:center; gap:' + clusterGap + 'px';
+    base.axisStyle = 'width:42px; position:relative; height:' + plotH + 'px; flex:none';
+    base.tickRowStyle = 'display:flex; justify-content:center; gap:' + clusterGap + 'px; margin-top:7px; width:100%';
+    base.axisTicks = this.ticks(plotH);
+
+    base.groups = list.map(c => {
+      const open = S.openCountry === c.name;
+      const nH = c.gs.filter(g => g.hwise_bl != null || g.hwise_el != null).length;
+      return {
+        name: SHORT[c.name] || c.name,
+        tooltip: c.name + ' — ' + c.gs.length + ' grants' + (nH ? ', ' + nH + ' with HWISE' : '') +
+          '\nBasic access ' + (c.basic_bl == null ? '—' : pct(c.basic_bl)) + ' → ' + (c.basic_el == null ? '—' : pct(c.basic_el)) +
+          '\nWater insecure ' + (c.hwise_bl == null ? '—' : pct(c.hwise_bl)) + ' → ' + (c.hwise_el == null ? '—' : pct(c.hwise_el)),
+        onClick: () => this.setState({ openCountry: open ? null : c.name, openGrant: null }),
+        style: 'flex:1 1 0; min-width:' + (2 * (geo.aW + geo.hW + 1) + clusterGap) + 'px; max-width:' + maxW + '; display:flex; flex-direction:column; align-items:center; cursor:pointer; padding:8px 2px 0 2px; border-radius:8px; background:' + (open ? '#F8EED3' : 'transparent'),
+        labelStyle: horizontalLabels
+          ? 'position:absolute; top:10px; left:4px; right:4px; text-align:center; text-wrap:pretty; font-size:14px; font-weight:600; letter-spacing:.2px; color:' + (open ? '#222520' : '#383B36')
+          : 'position:absolute; top:6px; left:50%; transform:translateX(-50%) rotate(180deg); writing-mode:vertical-rl; white-space:nowrap; font-size:11px; font-weight:600; letter-spacing:.2px; color:' + (open ? '#222520' : '#383B36'),
+        clusters: [
+          this.cluster('BL', c.improved_bl, c.basic_bl, c.hwise_bl, C, NAMES, geo, bigLabels),
+          this.cluster('EL', c.improved_el, c.basic_el, c.hwise_el, C, NAMES, geo, bigLabels)
+        ].filter(Boolean)
+      };
+    }).filter(g => g.clusters.length);
+    const longest = base.groups.reduce((m, g) => Math.max(m, g.name.length), 0);
+    base.labelTrackStyle = 'position:relative; width:100%; height:' + (horizontalLabels ? 46 : Math.min(126, Math.round(longest * 6.4) + 16)) + 'px';
+    base.hasGroups = base.groups.length > 0;
+    base.noGroups = base.groups.length === 0;
+
+    if (S.countryFilter !== 'All countries' && rows.length > 0) {
+      const nat = (S.national || {})[S.countryFilter];
+      if (nat) {
+        base.benchmark = {
+          pct: nat.pct,
+          label: 'National estimate · ' + pct(nat.pct),
+          title: S.countryFilter + ' national water insecurity: ' + (nat.pct * 100).toFixed(1) + '% (IWISE-12, ' + nat.year + ' wave, n=' + nat.n + ')',
+          lineStyle: 'position:absolute; left:0; right:0; top:' + (8 + plotH * (1 - nat.pct)).toFixed(1) + 'px; height:0; border-top:1px dashed #14A88C; z-index:3; pointer-events:none',
+          note: 'National water insecurity rate: ' + pct(nat.pct) + ' (IWISE-12, ' + nat.year + ')'
+        };
+      } else {
+        base.noBenchmark = true;
+        base.noBenchmarkNote = 'No national IWISE-12 estimate available for ' + S.countryFilter + '.';
+      }
+    }
+
+    if (S.partner !== 'All partners' && rows.length > 0) {
+      const gs = rows;
+      const cs = new Set(gs.map(g => g.country)).size;
+      const stat = (label, kb, ke, better) => {
+        const a = avg(gs, kb), b = avg(gs, ke);
+        const d = a == null || b == null ? null : b - a;
+        const good = d == null ? false : (better === 'up' ? d > 0 : d < 0);
+        return {
+          label,
+          from: a == null ? '—' : pct(a),
+          to: b == null ? '—' : pct(b),
+          delta: d == null ? '' : (d > 0 ? '+' : '') + Math.round(d * 100) + ' pts',
+          deltaStyle: 'color:' + (d == null ? '#9B9B94' : good ? '#222520' : '#C82027')
+        };
+      };
+      base.partnerHeader = {
+        name: S.partner,
+        sub: gs.length + ' ' + (gs.length === 1 ? 'grant' : 'grants') + ' · ' + cs + ' ' + (cs === 1 ? 'country' : 'countries') + ' · averages across grants',
+        stats: [stat('Basic access', 'basic_bl', 'basic_el', 'up'), stat('Improved source', 'improved_bl', 'improved_el', 'up'), stat('Water insecure', 'hwise_bl', 'hwise_el', 'down')]
+      };
+    }
+
+    if (S.openCountry && byCountry[S.openCountry]) {
+      const gs = byCountry[S.openCountry].slice().sort((a, b) => a.year - b.year || a.grantId.localeCompare(b.grantId));
+      base.countryPanel = {
+        name: S.openCountry,
+        sub: gs.length + ' ' + (gs.length === 1 ? 'grant' : 'grants') + ' · click a grant for its full result',
+        grants: gs.map(g => ({
+          id: g.grantId,
+          meta: g.org + ' · ' + g.half + ' ' + (2000 + g.year) + (g.n_hh ? ' · ' + g.n_hh + ' HHs' : ''),
+          onClick: () => this.setState({ openGrant: S.openGrant === g.grantId ? null : g.grantId }),
+          cardStyle: 'background:#FFFFFF; border:1px solid ' + (S.openGrant === g.grantId ? '#222520' : '#DFDFD7') + '; border-radius:8px; padding:16px 14px 14px 14px; cursor:pointer; box-shadow:0 1px 2px rgba(0,0,0,.05)',
+          clusters: [
+            this.cluster('BL', g.improved_bl, g.basic_bl, g.hwise_bl, C, NAMES, { plotH: 150, aW: 26, hW: 13 }, false),
+            this.cluster('EL', g.improved_el, g.basic_el, g.hwise_el, C, NAMES, { plotH: 150, aW: 26, hW: 13 }, false)
+          ].filter(Boolean)
+        }))
+      };
+    }
+
+    if (S.openGrant) {
+      const g = all.find(x => x.grantId === S.openGrant);
+      if (g) {
+        const bars = [];
+        const push = (tick, sub, b) => { if (b) bars.push({ tick, sub, segs: b.segs }); };
+        push('BL', 'Service level', this.accessBar(g.improved_bl, g.basic_bl, C, NAMES, showLabels));
+        push('BL', 'HWISE', this.hwiseBar(g.hwise_bl, C, NAMES, showLabels));
+        push('EL', 'Service level', this.accessBar(g.improved_el, g.basic_el, C, NAMES, showLabels));
+        push('EL', 'HWISE', this.hwiseBar(g.hwise_el, C, NAMES, showLabels));
+        const its = (g.hwiseItems || []).map(d => ({
+          label: d.label,
+          blBar: d.bl != null, elBar: d.el != null,
+          blLabel: d.bl == null ? '' : pct(d.bl),
+          elLabel: d.el == null ? '' : pct(d.el),
+          blTitle: d.label + ' baseline: ' + (d.bl == null ? '—' : pct(d.bl)),
+          elTitle: d.label + ' endline: ' + (d.el == null ? '—' : pct(d.el)),
+          blStyle: 'width:100%; border-radius:2px 2px 0 0; background:#19DBB4; height:' + ((d.bl || 0) * 100).toFixed(1) + '%',
+          elStyle: 'width:100%; border-radius:2px 2px 0 0; background:#29B0E4; height:' + ((d.el || 0) * 100).toFixed(1) + '%'
+        }));
+        base.detail = {
+          id: g.grantId,
+          meta: g.org + ' · ' + g.country + ' · ' + g.half + ' ' + (2000 + g.year) + (g.n_hh ? ' · ' + g.n_hh + ' households surveyed' : ''),
+          bars,
+          flags: g.flags || [],
+          hasFlags: (g.flags || []).length > 0,
+          items: its,
+          hasItems: its.length > 0,
+          noItems: its.length === 0
+        };
+      }
+    }
+    return base;
+  }
+
+  gain(c, kind) {
+    const a = kind === 'basic' ? c.basic_bl : c.hwise_bl;
+    const b = kind === 'basic' ? c.basic_el : c.hwise_el;
+    if (a == null || b == null) return -99;
+    return b - a;
+  }
+
+  ticks(h) {
+    return [0, 25, 50, 75, 100].map(v => ({
+      label: v + '%',
+      style: 'position:absolute; right:0; bottom:' + (v / 100 * h - 7) + 'px; font-size:11px; color:#9B9B94; text-align:right'
+    }));
+  }
+
+  grid() {
+    return [0, 25, 50, 75, 100].map(v => ({
+      style: 'position:absolute; left:0; right:0; bottom:' + v + '%; height:1px; background:' + (v === 0 ? '#C1C1BA' : '#E9EAE4') + '; z-index:1'
+    }));
+  }
+
+  accessBar(improved, basic, C, NAMES, showLabels) {
+    if (improved == null && basic == null) return null;
+    const imp = improved == null ? basic : improved;
+    const b = basic == null ? 0 : basic;
+    const raw = [
+      { k: 'basic', v: Math.max(0, b) },
+      { k: 'limited', v: Math.max(0, imp - b) },
+      { k: 'unimproved', v: Math.max(0, 1 - imp) }
+    ];
+    return { segs: raw.map(s => this.seg(s, C, NAMES, showLabels)) };
+  }
+
+  hwiseBar(hwise, C, NAMES, showLabels) {
+    if (hwise == null) return null;
+    const raw = [
+      { k: 'secure', v: Math.max(0, 1 - hwise) },
+      { k: 'insecure', v: Math.max(0, hwise) }
+    ];
+    return { segs: raw.map(s => this.seg(s, C, NAMES, showLabels)) };
+  }
+
+  seg(s, C, NAMES, showLabels) {
+    const p = Math.round(s.v * 100);
+    const dark = s.k === 'basic';
+    const base = 'width:100%; background:' + C[s.k] + '; height:' + (s.v * 100).toFixed(2) + '%';
+    return {
+      title: NAMES[s.k] + ': ' + p + '%',
+      label: showLabels && s.v >= 0.09 ? p + '%' : '',
+      style: base,
+      labelledStyle: base + '; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:600; color:' + (dark ? '#FAF7F0' : '#222520')
+    };
+  }
+
+  cluster(tick, improved, basic, hwise, C, NAMES, geo, showLabels) {
+    const access = this.accessBar(improved, basic, C, NAMES, showLabels);
+    const hw = this.hwiseBar(hwise, C, NAMES, showLabels);
+    if (!access && !hw) return null;
+    const pct = v => Math.round(v * 100) + '%';
+    const h = geo.plotH;
+    const total = geo.aW + (hw ? geo.hW + 1 : 0);
+    return {
+      tick,
+      tickStyle: 'font-size:' + (geo.aW >= 40 ? 12 : 10) + 'px; font-weight:600; letter-spacing:1px; color:#71716C; width:' + total + 'px; text-align:center',
+      wrapStyle: 'display:flex; align-items:flex-end; gap:1px; height:' + h + 'px; position:relative; z-index:2',
+      access: access ? { ...access, barStyle: 'width:' + geo.aW + 'px; height:' + h + 'px; display:flex; flex-direction:column', title: tick + ' service level — basic ' + (basic == null ? '—' : pct(basic)) + ', improved ' + (improved == null ? '—' : pct(improved)) } : null,
+      hwise: hw ? { ...hw, barStyle: 'width:' + geo.hW + 'px; height:' + h + 'px; display:flex; flex-direction:column', title: tick + ' HWISE — water insecure ' + pct(hwise) } : null
+    };
+  }
+}
+
+</script>
+</body>
+</html>
